@@ -3,6 +3,7 @@ package scripts;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.PollingScript;
 import org.powerbot.script.Script;
+import org.powerbot.script.rt4.Game;
 import scripts.tasks.*;
 
 import java.util.ArrayList;
@@ -22,7 +23,12 @@ public class Woodcutting extends PollingScript<ClientContext> {
 
     @Override
     public void poll() {
+        ctx.game.tab(Game.Tab.INVENTORY);
         for(Task task : taskList) {
+            if(ctx.controller.isStopping()) {
+                break;
+            }
+
             if(task.activate()) {
                 task.execute();
                 break;

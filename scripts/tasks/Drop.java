@@ -23,6 +23,10 @@ public class Drop extends Task {
     @Override
     public void execute() {
         for(Item log : ctx.inventory.select().id(LOGS_IDS)) {
+            if(ctx.controller.isStopping()) {
+                break;
+            }
+
             int startAmtLogs = ctx.inventory.select().id(LOGS_IDS).count();
             log.interact("Drop", "Logs");
 
