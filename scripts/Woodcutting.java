@@ -82,7 +82,8 @@ public class Woodcutting extends PollingScript<ClientContext> implements PaintLi
         g.drawRect(0, 0, 150, 150);
 
         g.drawString("Woodcutting", 20, 20);
-        g.drawString("Running: " + String.format("%02d:%02d:%02d", h, m, s), 20, 40);
-        g.drawString("Exp/h: " + (int) (expGained * (3600000 / ms)), 20, 60);
+        g.drawString("Current level: " + ctx.skills.level(Constants.SKILLS_WOODCUTTING), 20, 40 );
+        g.drawString("Running: " + String.format("%02d:%02d:%02d", h, m, s), 20, 60);
+        g.drawString("Exp/h: " + (int) (expGained * (3600000 / ms)), 20, 80);
     }
 }
