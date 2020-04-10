@@ -17,15 +17,14 @@ public class Chop extends Task {
 
     @Override
     public boolean activate() {
-        boolean a = ctx.players.local().animation() == -1 && !ctx.inventory.isFull();
-        System.out.println(a);
-        return a;
+        return ctx.players.local().animation() == -1 && !ctx.inventory.isFull();
     }
 
     @Override
     public void execute() {
         GameObject tree = ctx.objects.select().id(TREE_IDS).nearest().poll();
-        tree.interact("Chop down");
+        ctx.camera.turnTo(tree);
+        tree.interact("Chop down", "Tree");
 
         Condition.wait(new Callable<Boolean>() {
             @Override

@@ -3,7 +3,7 @@ package scripts;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.PollingScript;
 import org.powerbot.script.Script;
-import scripts.tasks.Chop;
+import scripts.tasks.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +16,7 @@ public class Woodcutting extends PollingScript<ClientContext> {
 
     @Override
     public void start() {
+        taskList.add(new Drop(ctx));
         taskList.add(new Chop(ctx));
     }
 
