@@ -28,7 +28,7 @@ public class Drop extends Task {
             }
 
             int startAmtLogs = ctx.inventory.select().id(LOGS_IDS).count();
-            log.interact("Drop", "Logs");
+            log.interact("Drop");
 
             Condition.wait(new Callable<Boolean>() {
                 @Override
