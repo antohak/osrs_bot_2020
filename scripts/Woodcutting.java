@@ -6,6 +6,7 @@ import org.powerbot.script.PollingScript;
 import org.powerbot.script.Script;
 import org.powerbot.script.rt4.Constants;
 import org.powerbot.script.rt4.Game;
+import scripts.paths.WoodcuttingPaths;
 import scripts.tasks.*;
 
 import javax.swing.*;
@@ -35,7 +36,7 @@ public class Woodcutting extends PollingScript<ClientContext> implements PaintLi
                 );
         if(userChoice.equals("Bank")) {
             taskList.add(new Bank(ctx));
-            taskList.add(new Walk(ctx));
+            taskList.add(new Walk(ctx, WoodcuttingPaths.LUMBRIDGE_WILLOW_PATH));
             taskList.add(new Chop(ctx));
         }
         else if(userChoice.equals("Powerchop")) {

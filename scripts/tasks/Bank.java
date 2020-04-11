@@ -13,7 +13,7 @@ public class Bank extends Task {
 
     @Override
     public boolean activate() {
-        return ctx.inventory.select().isEmpty() && ctx.bank.nearest().tile().distanceTo(ctx.players.local()) < 6;
+        return !ctx.inventory.select().isEmpty() && ctx.bank.nearest().tile().distanceTo(ctx.players.local()) < 6;
     }
 
     @Override

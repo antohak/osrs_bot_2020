@@ -6,26 +6,16 @@ import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
 import scripts.Task;
 import scripts.Walker;
-import scripts.constants.Banks;
 
 public class Walk extends Task {
 
-    final Tile [] pathToBnk = {
-            new Tile(3282, 3429, 0),
-            new Tile(3272, 3428, 0),
-            new Tile(3269, 3428, 0),
-            new Tile(3265, 3428, 0),
-            new Tile(3260, 3428, 0),
-            new Tile(3258, 3428, 0),
-            new Tile(3256, 3427, 0),
-            new Tile(3254, 3426, 0),
-            new Tile(3254, 3423, 0),
-            new Tile(3254, 3419, 0)
-    };
+    public Tile [] pathToBnk;
     private final Walker walker = new Walker(ctx);
 
-    public Walk(ClientContext ctx) {
+    public Walk(ClientContext ctx, Tile[] pathToBnk)
+    {
         super(ctx);
+        this.pathToBnk = pathToBnk;
     }
 
     @Override
@@ -46,21 +36,5 @@ public class Walk extends Task {
             else
                 walker.walkPathReverse(pathToBnk);
         }
-    }
-
-    private enum State {
-        WALKINGTOTREE, WALKINGTOBANK, IDLE
-    }
-
-    private State getState() {
-        if(ctx.players.local().inMotion()) {
-            if(ctx.inventory.isFull()) {
-                return State.WALKINGTOBANK;
-            } else if(!ctx.inventory.isEmpty() && !ctx.inventory.isFull()) {
-                return State.WALKINGTOTREE;
-            }
-        }
-        return State.IDLE;
-
     }
 }
